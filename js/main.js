@@ -87,11 +87,14 @@
         y: Math.round(r.top + r.height / 2 + window.scrollY)
       };
     });
-    var d = 'M ' + pts[0].x + ' ' + pts[0].y;
+    /* Sammelschiene im linken Rand — läuft NIE durch Text; je Knoten eine Stichleitung */
+    var minX = pts.reduce(function (m, p) { return Math.min(m, p.x); }, Infinity);
+    var spineX = Math.max(14, minX - 44);
+    var d = 'M ' + pts[0].x + ' ' + pts[0].y + ' L ' + spineX + ' ' + pts[0].y;
     for (var i = 1; i < pts.length; i++) {
-      var a = pts[i - 1], b = pts[i];
-      var ym = b.y - 48; /* Abzweig kurz über dem Ziel-Knoten */
-      d += ' L ' + a.x + ' ' + ym + ' L ' + b.x + ' ' + ym + ' L ' + b.x + ' ' + b.y;
+      var b = pts[i];
+      d += ' L ' + spineX + ' ' + b.y + ' L ' + b.x + ' ' + b.y;
+      if (i < pts.length - 1) d += ' L ' + spineX + ' ' + b.y; /* zurück zur Schiene */
     }
     path.setAttribute('d', d);
     pathLen = path.getTotalLength();

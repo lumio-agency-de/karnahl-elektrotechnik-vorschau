@@ -15,8 +15,7 @@
 
 /* ---------- Tokens ---------- */
 :root{
-  --paper:#f7f6f1;          /* technisches Zeichenpapier */
-  --paper-line:#e7e4da;     /* mm-Raster */
+  --paper:#f8f7f4;          /* ruhiges technisches Papier */
   --ink:#26282a;            /* Tusche / Anthrazit */
   --ink-soft:#4c4f52;
   --muted:#797d80;
@@ -39,10 +38,6 @@ body{
   font-family:var(--font);color:var(--ink);line-height:1.65;
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
   background-color:var(--paper);
-  background-image:
-    linear-gradient(var(--paper-line) 1px,transparent 1px),
-    linear-gradient(90deg,var(--paper-line) 1px,transparent 1px);
-  background-size:56px 56px;
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
