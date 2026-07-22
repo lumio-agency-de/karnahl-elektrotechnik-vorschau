@@ -11,8 +11,8 @@
 <meta property="og:title" content="Karnahl Elektrotechnik – Ihr Partner im Bereich der Elektrotechnik">
 <meta property="og:description" content="Meisterbetrieb aus Plankstadt: Elektroinstallation, Smart Home, Netzwerktechnik, Photovoltaik, Türsprechanlagen und Wallbox.">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="fonts/montserrat-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/saira-cond-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">
 {
@@ -33,16 +33,18 @@
 </head>
 <body>
 
+<svg class="circuit" id="circuit" aria-hidden="true"><path id="circuitPath" fill="none"/></svg>
+
 <header class="nav" id="nav">
   <a class="brand" href="#top" aria-label="Karnahl Elektrotechnik Startseite">
     <img src="img/logo-emblem.png" alt="" class="logo" width="385" height="272">
-    <span class="bname">Karnahl<span>Elektrotechnik · Meisterbetrieb</span></span>
+    <span class="bname">Karnahl<span>Elektrotechnik</span></span>
   </a>
   <nav class="nav-links" id="navLinks" aria-label="Hauptnavigation">
-    <a href="#leistungen" class="js-close">Leistungen</a>
-    <a href="#energie" class="js-close">Energie &amp; E-Mobilität</a>
-    <a href="#betrieb" class="js-close">Betrieb</a>
-    <a href="#kontakt" class="js-close">Kontakt</a>
+    <a href="#leistungen" class="js-close"><i>F1–F6</i>Leistungen</a>
+    <a href="#energie" class="js-close"><i>Last</i>Energie</a>
+    <a href="#betrieb" class="js-close"><i>Datenblatt</i>Betrieb</a>
+    <a href="#kontakt" class="js-close"><i>Anschluss</i>Kontakt</a>
     <a href="tel:+4917632829257" class="nav-cta js-close">0176 32829257</a>
   </nav>
   <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks">
@@ -52,186 +54,164 @@
 
 <main id="top">
 
-  <!-- HERO (dunkel, Volt-Grün als Signatur) -->
-  <section class="hero" id="hero">
-    <div class="hero-bg" data-img="img/hero.jpg" data-parallax="0.14" aria-hidden="true"></div>
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div class="hero-inner">
-      <span class="eyebrow reveal">Elektromeisterbetrieb · Plankstadt · Rhein-Neckar-Kreis</span>
-      <h1 class="reveal">Ihr Partner im Bereich der <em>Elektrotechnik</em>.</h1>
-      <p class="hero-sub reveal">Fachgerechte Beratung und professionelle Ausführung – von der Elektroinstallation über Smart Home und Netzwerktechnik bis zu Photovoltaik und Wallbox. Für Privat, Gewerbe und Industrie.</p>
-      <div class="hero-actions reveal">
-        <a href="#kontakt" class="btn btn-primary">Anfrage senden
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="tel:+4917632829257" class="btn btn-outline">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
-          0176 32829257
-        </a>
+  <!-- ============ HERO: Zeichnungsblatt ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="mlabel reveal"><span class="cnode" data-node></span>Einspeisung&ensp;·&ensp;Stromlaufplan&ensp;·&ensp;Rev. 2026</p>
+        <h1 class="reveal">Ihr Partner im Bereich der <em>Elektro&shy;technik</em></h1>
+        <p class="hero-sub reveal">Fachgerechte Beratung und professionelle Durchführung – von der Elektroinstallation über Smart Home und Netzwerktechnik bis zu Photovoltaik und Wallbox. Für Privat, Gewerbe und Industrie.</p>
+        <div class="hero-actions reveal">
+          <a href="#kontakt" class="btn btn-primary">Anfrage senden</a>
+          <a href="tel:+4917632829257" class="btn btn-line">0176 32829257</a>
+        </div>
       </div>
-      <div class="hero-meta reveal">
-        <span><b>Seit 2016</b> Meisterbetrieb</span>
-        <span><b>Mo – Fr</b> 08:00 – 18:00 Uhr</span>
-        <span><b>Privat</b> · Gewerbe · Industrie</span>
+      <figure class="hero-plate media reveal" data-img="img/hero.jpg" data-alt="Elektromeister bei der Arbeit am Verteilerschrank">
+        <figcaption class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2Z"/></svg><span>Abb. 1 folgt · img/hero.jpg</span></figcaption>
+        <span class="plate-tag">Abb. 1</span>
+      </figure>
+    </div>
+
+    <!-- DIN-Schriftfeld -->
+    <div class="wrap">
+      <table class="titleblock reveal" aria-label="Betriebsdaten">
+        <tr>
+          <td><b>Betrieb</b>Karnahl Elektrotechnik</td>
+          <td><b>Inhaber</b>Kim Karnahl · Elektromeister</td>
+          <td><b>Standort</b>68723 Plankstadt</td>
+          <td><b>Gegründet</b>2016</td>
+          <td><b>Einsatzgebiet</b>Rhein-Neckar-Kreis</td>
+          <td><b>Blatt</b>1 / 1</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ LEISTUNGEN: Sicherungsleiste ============ -->
+  <section class="fuses" id="leistungen">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <p class="mlabel"><span class="cnode" data-node></span>Pos. F1 – F6&ensp;·&ensp;Verteilung</p>
+        <h2>Unsere Leistungen</h2>
+        <p class="sec-sub">Der Meisterbetrieb Karnahl Elektrotechnik bietet fachgerechte Beratung und professionelle Durchführung verschiedener Tätigkeiten in unterschiedlichen Sparten der Elektrotechnik.</p>
+      </header>
+
+      <div class="fuse-list reveal">
+        <details class="fuse" open>
+          <summary><span class="fno">F1</span><span class="ftitle">Elektroinstallation</span><span class="fmeta">Neubau · Sanierung · Verteilungen</span><span class="fsw" aria-hidden="true"></span></summary>
+          <div class="fuse-body">
+            <p>Neuinstallation, Modernisierung und Erweiterung – von der Unterverteilung über Beleuchtung und Steckdosen bis zur kompletten Gebäudeinstallation. Normgerecht geplant und sauber ausgeführt, im Neubau wie im Bestand.</p>
+            <figure class="media fimg" data-img="img/elektroinstallation.jpg" data-alt="Sauber verdrahteter Elektro-Verteilerschrank">
+              <figcaption class="ph"><span>Bild folgt · img/elektroinstallation.jpg</span></figcaption>
+            </figure>
+          </div>
+        </details>
+        <details class="fuse">
+          <summary><span class="fno">F2</span><span class="ftitle">Smart Home</span><span class="fmeta">Licht · Rollläden · Heizung · Sicherheit</span><span class="fsw" aria-hidden="true"></span></summary>
+          <div class="fuse-body">
+            <p>Licht, Rollläden, Heizung und Sicherheit intelligent vernetzt – bedienbar per Taster, App oder Sprache. Wir planen und installieren die Steuerung, die zu Ihrem Zuhause passt.</p>
+            <figure class="media fimg" data-img="img/smarthome.jpg" data-alt="Smart-Home-Bedienpanel an heller Wand">
+              <figcaption class="ph"><span>Bild folgt · img/smarthome.jpg</span></figcaption>
+            </figure>
+          </div>
+        </details>
+        <details class="fuse">
+          <summary><span class="fno">F3</span><span class="ftitle">Netzwerktechnik</span><span class="fmeta">Verkabelung · WLAN · Verteilung</span><span class="fsw" aria-hidden="true"></span></summary>
+          <div class="fuse-body">
+            <p>Strukturierte Verkabelung, WLAN und Netzwerkverteilung für Zuhause und Betrieb – damit Daten genauso zuverlässig fließen wie Strom.</p>
+            <figure class="media fimg" data-img="img/netzwerk.jpg" data-alt="Netzwerkschrank mit sauber gepatchten Kabeln">
+              <figcaption class="ph"><span>Bild folgt · img/netzwerk.jpg</span></figcaption>
+            </figure>
+          </div>
+        </details>
+        <details class="fuse">
+          <summary><span class="fno">F4</span><span class="ftitle">Photovoltaik</span><span class="fmeta">Planung · Installation · Anschluss</span><span class="fsw" aria-hidden="true"></span></summary>
+          <div class="fuse-body">
+            <p>Strom vom eigenen Dach: Wir installieren und schließen Ihre Photovoltaik-Anlage fachgerecht an – als Meisterbetrieb aus einer Hand. Mehr dazu im <a href="#energie">Lastplan Energie</a>.</p>
+          </div>
+        </details>
+        <details class="fuse">
+          <summary><span class="fno">F5</span><span class="ftitle">Türsprechanlagen</span><span class="fmeta">Audio · Video · Mehrfamilienhaus</span><span class="fsw" aria-hidden="true"></span></summary>
+          <div class="fuse-body">
+            <p>Moderne Tür- und Video-Sprechanlagen für Ein- und Mehrfamilienhäuser – sehen und hören, wer klingelt, auch von unterwegs.</p>
+            <figure class="media fimg" data-img="img/tuersprechanlage.jpg" data-alt="Moderne Video-Türsprechanlage am Hauseingang">
+              <figcaption class="ph"><span>Bild folgt · img/tuersprechanlage.jpg</span></figcaption>
+            </figure>
+          </div>
+        </details>
+        <details class="fuse">
+          <summary><span class="fno">F6</span><span class="ftitle">Wallbox</span><span class="fmeta">Ladelösung fürs E-Auto</span><span class="fsw" aria-hidden="true"></span></summary>
+          <div class="fuse-body">
+            <p>Sicher und schnell zuhause laden: Wir montieren und schließen die passende Wallbox für Ihr Elektroauto an – inklusive Beratung zu Anschlussleistung und Anmeldung.</p>
+          </div>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- TRUST STRIP -->
-  <div class="strip" aria-hidden="true">
-    <div class="strip-track">
-      <span>Elektroinstallation</span><span>Smart Home</span><span>Netzwerktechnik</span><span>Photovoltaik</span><span>Türsprechanlagen</span><span>Wallbox</span><span>Meisterbetrieb seit 2016</span>
-      <span>Elektroinstallation</span><span>Smart Home</span><span>Netzwerktechnik</span><span>Photovoltaik</span><span>Türsprechanlagen</span><span>Wallbox</span><span>Meisterbetrieb seit 2016</span>
-    </div>
-  </div>
-
-  <!-- INTRO -->
-  <section class="intro wrap">
-    <div class="intro-grid">
+  <!-- ============ ENERGIE: Lastplan (dunkel) ============ -->
+  <section class="load" id="energie">
+    <div class="wrap load-grid">
       <div>
-        <span class="eyebrow reveal">Wer wir sind</span>
-        <p class="big reveal">Ein Meisterbetrieb, bei dem die <b>Zufriedenheit der Kunden</b> oberste Priorität hat.</p>
-      </div>
-      <div class="intro-side">
-        <p class="reveal">Der Meisterbetrieb Karnahl Elektrotechnik bietet fachgerechte Beratung und professionelle Durchführung verschiedener Tätigkeiten in unterschiedlichen Sparten der Elektrotechnik. Kundenorientiertes, flexibles und auftragsgemäßes Arbeiten stehen bei uns im Vordergrund.</p>
-        <div class="intro-stats reveal">
-          <div class="s"><b>2016</b><span>gegründet von Kim Karnahl</span></div>
-          <div class="s"><b>Meister</b><span>geführter Fachbetrieb</span></div>
-          <div class="s"><b>3&times;</b><span>Privat · Gewerbe · Industrie</span></div>
+        <p class="mlabel on-dark reveal"><span class="cnode" data-node></span>Lastplan&ensp;·&ensp;PV + Wallbox</p>
+        <h2 class="reveal">Vom Dach ins Auto.</h2>
+        <p class="reveal">Mit <strong>Photovoltaik</strong> erzeugen Sie Ihren eigenen Strom, mit der passenden <strong>Wallbox</strong> laden Sie Ihr E-Auto sicher und schnell zuhause. Karnahl Elektrotechnik plant, installiert und schließt beides fachgerecht an – ein Ansprechpartner für die ganze Energietechnik.</p>
+        <div class="load-diagram reveal" aria-hidden="true">
+          <span class="ld-node"><i>☀</i>PV-Anlage</span>
+          <span class="ld-wire"></span>
+          <span class="ld-node"><i>⌂</i>Hausanschluss</span>
+          <span class="ld-wire"></span>
+          <span class="ld-node"><i>▣</i>Wallbox</span>
+          <span class="ld-wire"></span>
+          <span class="ld-node"><i>⚡</i>E-Auto</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- LEISTUNGEN -->
-  <section class="services wrap" id="leistungen">
-    <div class="sec-head">
-      <div>
-        <span class="eyebrow reveal">Unsere Leistungen</span>
-        <h2 class="reveal">Was wir für Sie tun.</h2>
-      </div>
-      <p class="reveal">Verschiedene Sparten der Elektrotechnik – kompetent und zuverlässig aus einer Meisterhand.</p>
-    </div>
-
-    <div class="svc-grid">
-      <article class="svc feature reveal">
-        <figure class="svc-img media" data-img="img/elektroinstallation.jpg" data-alt="Sauber verdrahteter Elektro-Verteilerschrank – Elektroinstallation von Karnahl Elektrotechnik">
-          <figcaption class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2Z"/></svg><span>Bild folgt &middot; img/elektroinstallation.jpg</span></figcaption>
-        </figure>
-        <div class="svc-body">
-          <span class="svc-tag">Kernkompetenz</span>
-          <h3>Elektroinstallation</h3>
-          <p>Neuinstallation, Modernisierung und Erweiterung – von der Unterverteilung über Beleuchtung und Steckdosen bis zur kompletten Gebäudeinstallation. Normgerecht geplant und sauber ausgeführt, im Neubau wie im Bestand.</p>
-          <ul><li>Neubau &amp; Sanierung</li><li>Verteilungen</li><li>Beleuchtung</li><li>Gewerbe &amp; Industrie</li></ul>
-        </div>
-      </article>
-
-      <article class="svc reveal">
-        <figure class="svc-img media" data-img="img/smarthome.jpg" data-alt="Smart-Home-Bedienpanel an heller Wand">
-          <figcaption class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11 12 3l9 8M5 10v10h14V10"/><path d="M9.5 16.5h5"/></svg><span>Bild folgt &middot; img/smarthome.jpg</span></figcaption>
-        </figure>
-        <div class="svc-body">
-          <span class="svc-tag">Komfort</span>
-          <h3>Smart Home</h3>
-          <p>Licht, Rollläden, Heizung und Sicherheit intelligent vernetzt – bedienbar per Taster, App oder Sprache. Wir planen und installieren die Steuerung, die zu Ihrem Zuhause passt.</p>
-        </div>
-      </article>
-
-      <article class="svc reveal">
-        <figure class="svc-img media" data-img="img/netzwerk.jpg" data-alt="Netzwerkschrank mit sauber gepatchten Kabeln">
-          <figcaption class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="6" rx="1"/><rect x="4" y="15" width="16" height="6" rx="1"/><path d="M12 9v6"/></svg><span>Bild folgt &middot; img/netzwerk.jpg</span></figcaption>
-        </figure>
-        <div class="svc-body">
-          <span class="svc-tag">Vernetzung</span>
-          <h3>Netzwerktechnik</h3>
-          <p>Strukturierte Verkabelung, WLAN und Netzwerkverteilung für Zuhause und Betrieb – damit Daten genauso zuverlässig fließen wie Strom.</p>
-        </div>
-      </article>
-
-      <article class="svc reveal">
-        <figure class="svc-img media" data-img="img/tuersprechanlage.jpg" data-alt="Moderne Video-Türsprechanlage am Hauseingang">
-          <figcaption class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="2" width="10" height="20" rx="2"/><circle cx="12" cy="8" r="2"/><path d="M9.5 15h5"/></svg><span>Bild folgt &middot; img/tuersprechanlage.jpg</span></figcaption>
-        </figure>
-        <div class="svc-body">
-          <span class="svc-tag">Sicherheit</span>
-          <h3>Türsprechanlagen</h3>
-          <p>Moderne Tür- und Video-Sprechanlagen für Ein- und Mehrfamilienhäuser – sehen und hören, wer klingelt, auch von unterwegs.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ENERGIE (dunkles Band: Photovoltaik + Wallbox) -->
-  <section class="energy" id="energie">
-    <div class="energy-grid wrap">
-      <div>
-        <span class="eyebrow on-dark reveal">Energie &amp; E-Mobilität</span>
-        <h2 class="reveal">Strom vom eigenen Dach – <span>bis in Ihr Auto.</span></h2>
-        <p class="reveal">Mit <strong>Photovoltaik</strong> erzeugen Sie Ihren eigenen Strom, mit der passenden <strong>Wallbox</strong> laden Sie Ihr E-Auto sicher und schnell zuhause. Karnahl Elektrotechnik plant, installiert und schließt beides fachgerecht an – als Meisterbetrieb aus einer Hand.</p>
-        <p class="reveal">Von der Beratung über die Installation bis zum Anschluss: ein Ansprechpartner für Ihre ganze Energietechnik.</p>
-        <div class="energy-facts reveal">
-          <div class="f"><b>PV</b><span>Photovoltaik-Installation</span></div>
-          <div class="f"><b>Wallbox</b><span>Ladelösung fürs E-Auto</span></div>
-          <div class="f"><b>1 : 1</b><span>ein Ansprechpartner</span></div>
-        </div>
-      </div>
-      <figure class="energy-media media reveal" data-img="img/energie.jpg" data-alt="Wohnhaus mit Photovoltaik-Anlage und Wallbox mit ladendem E-Auto">
-        <figcaption class="ph on-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18 12h3M16.3 7.7l2.1-2.1"/><path d="M7 20a5 5 0 0 1 10 0"/><path d="M2 20h20"/></svg><span>Bild folgt &middot; img/energie.jpg</span></figcaption>
+      <figure class="load-media media reveal" data-img="img/energie.jpg" data-alt="Wohnhaus mit Photovoltaik-Anlage und Wallbox mit ladendem E-Auto">
+        <figcaption class="ph on-dark"><span>Bild folgt · img/energie.jpg</span></figcaption>
+        <span class="plate-tag">Abb. 2</span>
       </figure>
     </div>
   </section>
 
-  <!-- BETRIEB -->
-  <section class="about" id="betrieb">
-    <div class="about-grid wrap">
-      <figure class="about-media media reveal" data-img="img/betrieb.jpg" data-alt="Elektromeister bei der Arbeit am Verteilerschrank">
-        <figcaption class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg><span>Bild folgt &middot; img/betrieb.jpg</span></figcaption>
+  <!-- ============ BETRIEB: Datenblatt ============ -->
+  <section class="sheet" id="betrieb">
+    <div class="wrap sheet-grid">
+      <figure class="sheet-media media reveal" data-img="img/betrieb.jpg" data-alt="Elektromeister Kim Karnahl bei der Arbeit">
+        <figcaption class="ph"><span>Bild folgt · img/betrieb.jpg</span></figcaption>
+        <span class="plate-tag">Abb. 3</span>
       </figure>
-      <div class="about-copy">
-        <span class="eyebrow reveal">Der Betrieb</span>
+      <div>
+        <p class="mlabel reveal"><span class="cnode" data-node></span>Datenblatt&ensp;·&ensp;Der Betrieb</p>
         <h2 class="reveal">Meisterbetrieb aus Plankstadt.</h2>
-        <p class="reveal">Der Meisterbetrieb Karnahl Elektrotechnik wurde <strong>2016 von Kim Karnahl</strong> ins Leben gerufen – mit Sitz im Rhein-Neckar-Kreis. Kundenorientiertes, flexibles und auftragsgemäßes Arbeiten stehen im Vordergrund.</p>
-        <p class="reveal">Kompetent und zuverlässig betreuen wir Privat-, Gewerbe- und Industriekunden – von der ersten Beratung bis zur fertigen Anlage.</p>
-        <div class="vals">
-          <div class="v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Meisterqualität</b><span>Elektromeister Kim Karnahl</span></div></div>
-          <div class="v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Seit 2016</b><span>inhabergeführt</span></div></div>
-          <div class="v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Regional</b><span>Plankstadt &amp; Rhein-Neckar-Kreis</span></div></div>
-          <div class="v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Für alle</b><span>Privat, Gewerbe &amp; Industrie</span></div></div>
-        </div>
+        <p class="reveal">Der Meisterbetrieb Karnahl Elektrotechnik wurde <strong>2016 von Kim Karnahl</strong> ins Leben gerufen – mit Sitz im Rhein-Neckar-Kreis. Kundenorientiertes, flexibles und auftragsgemäßes Arbeiten stehen im Vordergrund. Kompetent und zuverlässig betreuen wir Privat-, Gewerbe- und Industriekunden.</p>
+        <dl class="specs reveal">
+          <div><dt>Gegründet</dt><dd>2016</dd></div>
+          <div><dt>Inhaber</dt><dd>Kim Karnahl, Elektromeister</dd></div>
+          <div><dt>Standort</dt><dd>Beethovenstraße 16, 68723 Plankstadt</dd></div>
+          <div><dt>Einsatzgebiet</dt><dd>Rhein-Neckar-Kreis</dd></div>
+          <div><dt>Kunden</dt><dd>Privat · Gewerbe · Industrie</dd></div>
+          <div><dt>Erreichbar</dt><dd>Mo – Fr, 08:00 – 18:00 Uhr</dd></div>
+        </dl>
       </div>
     </div>
   </section>
 
-  <!-- KONTAKT -->
-  <section class="contact wrap" id="kontakt">
-    <div class="contact-grid">
+  <!-- ============ KONTAKT: Anschluss ============ -->
+  <section class="connect" id="kontakt">
+    <div class="wrap connect-grid">
       <div>
-        <span class="eyebrow reveal">Ihr Kontakt zu uns</span>
+        <p class="mlabel reveal"><span class="cnode" data-node></span>Anschluss&ensp;·&ensp;Ihr Kontakt zu uns</p>
         <h2 class="reveal">Wir freuen uns über Ihre Nachricht.</h2>
-        <p class="contact-lead reveal">Ob Neubau, Modernisierung, Photovoltaik oder Wallbox – melden Sie sich, wir beraten Sie persönlich.</p>
-        <div class="contact-list reveal">
-          <div class="contact-row">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
-            <div><b>Telefon</b><a href="tel:+4917632829257">+49 (0)176 32829257</a></div>
-          </div>
-          <div class="contact-row">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
-            <div><b>E-Mail</b><a href="mailto:info@karnahl-elektrotechnik.de">info@karnahl-elektrotechnik.de</a></div>
-          </div>
-          <div class="contact-row">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            <div><b>Anschrift</b><p>Beethovenstraße 16, 68723 Plankstadt</p></div>
-          </div>
-          <div class="contact-row">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
-            <div><b>Erreichbar</b><p>Mo – Fr: 08:00 – 18:00 Uhr</p></div>
-          </div>
-        </div>
+        <p class="connect-lead reveal">Ob Neubau, Modernisierung, Photovoltaik oder Wallbox – melden Sie sich, wir beraten Sie persönlich.</p>
+        <ul class="clist reveal">
+          <li><b>Telefon</b><a href="tel:+4917632829257">+49 (0)176 32829257</a></li>
+          <li><b>E-Mail</b><a href="mailto:info@karnahl-elektrotechnik.de">info@karnahl-elektrotechnik.de</a></li>
+          <li><b>Anschrift</b><span>Beethovenstraße 16, 68723 Plankstadt</span></li>
+          <li><b>Erreichbar</b><span>Mo – Fr: 08:00 – 18:00 Uhr</span></li>
+        </ul>
       </div>
 
-      <form class="card reveal" id="contactForm" novalidate>
-        <h3>Anfrage senden</h3>
-        <p>Kurz schildern, worum es geht – wir melden uns zurück.</p>
+      <form class="cform reveal" id="contactForm" novalidate>
         <div class="row-2">
           <div class="field"><label for="vorname">Vorname *</label><input id="vorname" name="vorname" type="text" autocomplete="given-name" required></div>
           <div class="field"><label for="nachname">Nachname *</label><input id="nachname" name="nachname" type="text" autocomplete="family-name" required></div>
@@ -241,9 +221,7 @@
           <div class="field"><label for="telefon">Telefon</label><input id="telefon" name="telefon" type="tel" autocomplete="tel"></div>
         </div>
         <div class="field"><label for="nachricht">Nachricht</label><textarea id="nachricht" name="nachricht"></textarea></div>
-        <button type="submit" class="btn btn-primary">Absenden
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
+        <button type="submit" class="btn btn-primary">Anfrage senden</button>
         <p class="form-note" id="formNote">* Pflichtfelder. Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Bearbeitung der Anfrage zu (siehe <a href="datenschutz.html">Datenschutz</a>).</p>
       </form>
     </div>
@@ -253,35 +231,22 @@
 
 <footer class="footer">
   <div class="wrap">
-    <div class="footer-top">
+    <div class="footer-grid">
       <div class="footer-brand">
-        <div class="fname">Karnahl Elektrotechnik</div>
-        <p>Ihr Elektrobetrieb in Plankstadt: Elektroinstallation, Smart Home, Netzwerktechnik, Photovoltaik, Türsprechanlagen und Wallbox – Meisterbetrieb seit 2016.</p>
+        <img src="img/logo-emblem.png" alt="" width="64" height="45">
+        <p><strong>Karnahl Elektrotechnik</strong><br>Beethovenstraße 16 · 68723 Plankstadt<br>Mo – Fr: 08:00 – 18:00 Uhr</p>
       </div>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <a href="#leistungen">Leistungen</a>
-          <a href="#energie">Energie &amp; E-Mobilität</a>
-          <a href="#betrieb">Betrieb</a>
-          <a href="#kontakt">Kontakt</a>
-        </div>
-        <div class="footer-col">
-          <h4>Kontakt</h4>
-          <a href="tel:+4917632829257">+49 (0)176 32829257</a>
-          <a href="mailto:info@karnahl-elektrotechnik.de">info@karnahl-elektrotechnik.de</a>
-          <p>Beethovenstraße 16<br>68723 Plankstadt</p>
-          <p>Mo – Fr: 08:00 – 18:00 Uhr</p>
-        </div>
-        <div class="footer-col">
-          <h4>Rechtliches</h4>
-          <a href="impressum.html">Impressum</a>
-          <a href="datenschutz.html">Datenschutz</a>
-        </div>
+      <div class="footer-col">
+        <a href="tel:+4917632829257">+49 (0)176 32829257</a>
+        <a href="mailto:info@karnahl-elektrotechnik.de">info@karnahl-elektrotechnik.de</a>
+      </div>
+      <div class="footer-col">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span id="year">2026</span> Karnahl Elektrotechnik</span>
+      <span>© <span id="year">2026</span> Karnahl Elektrotechnik · Meisterbetrieb</span>
       <span class="made">Relaunch-Entwurf · Lumio</span>
     </div>
   </div>

@@ -1,4 +1,4 @@
-/* Karnahl Elektrotechnik — Interaktion, Reveals, Parallax, Bild-Slots */
+/* Karnahl Elektrotechnik — „Stromlaufplan": Leiterbahn, Reveals, Bild-Slots */
 (function () {
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -7,7 +7,7 @@
   var y = document.getElementById('year');
   if (y) y.textContent = String(new Date().getFullYear());
 
-  /* Nav-Hintergrund beim Scrollen */
+  /* Nav-Schatten beim Scrollen */
   var nav = document.getElementById('nav');
   function onScrollNav() {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -37,8 +37,7 @@
     });
   }
 
-  /* Bild-Slots: liegt die Datei in img/, wird sie geladen — sonst bleibt der Platzhalter.
-     So können neue Bilder ohne Code-Änderung eingefügt werden. */
+  /* Bild-Slots: liegt die Datei in img/, wird sie geladen — sonst bleibt der Platzhalter. */
   Array.prototype.forEach.call(document.querySelectorAll('[data-img]'), function (slot) {
     var src = slot.getAttribute('data-img');
     if (!src) return;
@@ -50,6 +49,7 @@
       img.loading = 'lazy';
       slot.insertBefore(img, slot.firstChild);
       slot.classList.add('has-img');
+      schedulePath();
     };
     probe.src = src;
   });
@@ -67,28 +67,69 @@
     Array.prototype.forEach.call(revs, function (el) { io.observe(el); });
   }
 
-  /* Leichter Parallax auf dem Hero-Bild (sofern geladen) */
-  var layers = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
-  if (!reduce && layers.length) {
-    var ticking = false;
-    function apply() {
-      var vh = window.innerHeight;
-      layers.forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > vh + 200) return;
-        var speed = parseFloat(el.getAttribute('data-parallax')) || 0.1;
-        var offset = (r.top + r.height / 2 - vh / 2) * -speed;
-        var target = el.querySelector('img');
-        if (target) target.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
-      });
-      ticking = false;
+  /* ---------- Leiterbahn: orthogonale Linie durch alle Knoten ---------- */
+  var svg = document.getElementById('circuit');
+  var path = document.getElementById('circuitPath');
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('.cnode[data-node]'));
+  var pathLen = 0, startY = 0, endY = 0, raf = null;
+
+  function buildPath() {
+    if (!svg || !path || nodes.length < 2) return;
+    var docW = document.documentElement.scrollWidth;
+    var docH = document.documentElement.scrollHeight;
+    svg.setAttribute('width', docW);
+    svg.setAttribute('height', docH);
+    svg.setAttribute('viewBox', '0 0 ' + docW + ' ' + docH);
+    var pts = nodes.map(function (n) {
+      var r = n.getBoundingClientRect();
+      return {
+        x: Math.round(r.left + r.width / 2 + window.scrollX),
+        y: Math.round(r.top + r.height / 2 + window.scrollY)
+      };
+    });
+    var d = 'M ' + pts[0].x + ' ' + pts[0].y;
+    for (var i = 1; i < pts.length; i++) {
+      var a = pts[i - 1], b = pts[i];
+      var ym = b.y - 48; /* Abzweig kurz über dem Ziel-Knoten */
+      d += ' L ' + a.x + ' ' + ym + ' L ' + b.x + ' ' + ym + ' L ' + b.x + ' ' + b.y;
     }
-    function onScroll() {
-      if (!ticking) { ticking = true; window.requestAnimationFrame(apply); }
+    path.setAttribute('d', d);
+    pathLen = path.getTotalLength();
+    startY = pts[0].y;
+    endY = pts[pts.length - 1].y;
+    if (reduce) {
+      path.style.strokeDasharray = 'none';
+    } else {
+      path.style.strokeDasharray = String(pathLen);
+      drawProgress();
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', apply);
-    apply();
+  }
+
+  function drawProgress() {
+    if (!pathLen || reduce) return;
+    var lead = window.scrollY + window.innerHeight * 0.72;
+    var p = (lead - startY) / Math.max(1, endY - startY);
+    p = Math.max(0, Math.min(1, p));
+    path.style.strokeDashoffset = String(pathLen * (1 - p));
+  }
+
+  function schedulePath() {
+    if (raf) return;
+    raf = window.requestAnimationFrame(function () { raf = null; buildPath(); });
+  }
+
+  if (svg && path && nodes.length > 1) {
+    buildPath();
+    window.addEventListener('resize', schedulePath);
+    window.addEventListener('scroll', function () {
+      if (!reduce) window.requestAnimationFrame(drawProgress);
+    }, { passive: true });
+    /* Sicherungen auf-/zuklappen ändert die Dokumenthöhe */
+    Array.prototype.forEach.call(document.querySelectorAll('details.fuse'), function (dt) {
+      dt.addEventListener('toggle', schedulePath);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedulePath);
+    window.addEventListener('load', schedulePath);
   }
 
   /* Kontaktformular — Demo-Handling (kein Backend im Entwurf) */
