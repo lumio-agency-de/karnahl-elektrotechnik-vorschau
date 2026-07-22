@@ -99,7 +99,7 @@
       e.preventDefault();
       var name = (document.getElementById('vorname') || {}).value || '';
       note.textContent = 'Danke' + (name ? ', ' + name : '') + '! Diese Vorschau versendet noch nicht – zum Livegang binden wir das Formular an Ihr Postfach an.';
-      note.style.color = 'var(--green)';
+      note.style.color = 'var(--orange-deep)';
     });
   }
 })();

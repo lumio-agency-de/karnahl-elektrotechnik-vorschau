@@ -1,10 +1,10 @@
 .legal{max-width:820px;margin:0 auto;padding:clamp(4rem,10vh,6rem) var(--pad) 5rem}
-.legal a.back{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+.legal a.back{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep)}
 .legal h1{font-size:clamp(2rem,6vw,3.4rem);margin:1.2rem 0 2.5rem}
 .legal h2{font-size:1.25rem;margin:2.4rem 0 .8rem;color:var(--ink)}
 .legal h3{font-size:1.05rem;margin:1.6rem 0 .5rem;color:var(--ink)}
 .legal p,.legal li{color:var(--ink-soft);margin-bottom:.7rem;max-width:70ch}
 .legal ul{padding-left:1.2rem;margin-bottom:.7rem}
 .legal strong{color:var(--ink)}
-.legal a{color:var(--green)}
+.legal a{color:var(--orange-deep)}
 .legal .muted-note{font-size:.82rem;color:var(--muted);margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line)}
